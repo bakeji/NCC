@@ -13,9 +13,11 @@ import WhoWeAre from "@/components/Home/whoWeAre";
 export default function Home() {
   return (
     <div>
-      <div className="bg-no-repeat bg-cover  min-h-screen " style={{backgroundImage: "url('/home/bg.png')"}} >
+      <div className="bg-no-repeat bg-cover   min-h-screen " style={{backgroundImage: "url('/home/bg.png')" }} >
         <Header />
-        <HeroSection />
+       <div className=" flex justify-center w-full h-screen items-center " >
+         <HeroSection />
+       </div>
       </div>
       <Service/>
       <LatestMessage />

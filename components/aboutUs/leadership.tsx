@@ -10,13 +10,13 @@ export default function Leadership(){
         {id:6, name: "Reverend Abimbola Oladipo", position: "National Overseer", img: "/aboutus/rev-b.png"},
     ]
     return(
-        <section className="p-10 bg-black " >
+        <section className="p-10 bg-black max-md:p-5 " >
             <div className="flex flex-col gap-2  mt-8 ">
-                <h1 className="text-white font-heading text-center  " >Leadership Structure</h1>
-                <p className="font-secondary text-[#FFFFFFCC] text-center " >Join us for gatherings that bring our church family together.</p>
+                <h1 className="text-white font-heading text-center max-md:text-2xl!  " >Leadership Structure</h1>
+                <p className="font-secondary text-[#FFFFFFCC] text-center   " >Join us for gatherings that bring our church family together.</p>
             </div>
 
-            <div className="grid grid-cols-3 mt-10 gap-7" >
+            <div className="grid grid-cols-3 mt-10 gap-7 max-lg:grid-cols-2  max-md:grid-cols-1 " >
                 {LeadershipData.map((leader)=>(
                 <div key={leader.id} className="bg-[#1E1E1E] rounded-xl ">
                     <div className="relative w-full h-93  ">

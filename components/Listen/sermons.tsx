@@ -20,8 +20,8 @@ export default function Sermons(){
 
 
     return(
-        <section className="p-10 " >
-            <div className=" grid grid-cols-3 gap-10 ">
+        <section className="p-10 max-md:p-5 " >
+            <div className=" grid grid-cols-3 gap-10  max-lg:grid-cols-2 max-md:grid-cols-1 " >
                     {sermons.map((sermon)=>(
                 <div key={sermon.id} >
 
@@ -29,7 +29,7 @@ export default function Sermons(){
                         <Image src={sermon.img} fill className="object-fill object-center"  alt="sermon image" />
 
                     </div>
-                    <div className="pt-4">
+                    <div className="pt-4 ">
                         <p className=" font-family-figtree font-semibold text-[26px] " >{sermon.title}</p>
                         <button className="bg-[#02066F] w-full text-white px-4 py-2 rounded-md mt-2">Listen Now</button>
                     </div>

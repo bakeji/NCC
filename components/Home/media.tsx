@@ -9,20 +9,20 @@ export default function Media(){
         {id:6, img: '/home/member6.png'},
     ]
     return(
-        <div className="p-10">
+        <div className="p-10 max-md:p-4">
             <div className="flex flex-col gap-3 ">
-                <div className="flex items-center gap-2 text-center " >
-                    <h1 className="font-heading" >Follow Us On Social Media</h1>
+                <div className="flex items-center gap-2 text-center  " >
+                    <h1 className="font-heading max-md:text-2xl! " >Follow Us On Social Media</h1>
                     <div className="flex items-center mt-2 " >
                         <a href="#"> <img src="/home/ig.png" alt="instagram" /></a>
                         <a href="#"> <img src="/home/facebook.png" alt="facebook" /> </a>
                         <a href="#"> <img src="/home/youtube.png" alt="youtube" /> </a>
                     </div>
                 </div>
-                <p>Get daily inspiration, messages of hope, and church updates right where you are.</p>
+                <p className="font-secondary max-md:text-[14px]!" >Get daily inspiration, messages of hope, and church updates right where you are.</p>
             </div>
 
-            <div className="grid grid-cols-3 gap-5 mt-8 " >
+            <div className="grid grid-cols-3 gap-5 mt-8 max-lg:grid-cols-2 max-md:grid-cols-1 " >
                 {members.map((member)=>(
                 <div className=" w-full h-102 relative object-center " key={member.id} >
                       <Image fill className="object-fill" src={member.img} alt="members" />

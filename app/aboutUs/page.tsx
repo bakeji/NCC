@@ -13,11 +13,13 @@ export default function AboutUs(){
         <div>
             <div className="bg-no-repeat bg-cover  min-h-screen " style={{backgroundImage: "url('/aboutus/bg-about.png')"}} >
                 <Header />
-                <HeroSection />
+                <div className=" flex justify-center w-full h-screen items-center " >
+                        <HeroSection />
+                </div>
             </div>
             <div className="bg-[#1E1E1E] p-10" >
-                <p className="text-[#FFFFFF80] font-family-figtree text-2xl font-medium " >Established in 1985</p>
-                <p className="text-white font-heading " >Rooted in our love for God, the church, our city, and the nations.</p>
+                <p className="text-[#FFFFFF80] font-family-figtree text-2xl max-md:text-xl font-medium " >Established in 1985</p>
+                <p className="text-white font-heading max-md:text-2xl! " >Rooted in our love for God, the church, our city, and the nations.</p>
             </div>
             <MakingDisciples />
             <Vision />

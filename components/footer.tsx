@@ -11,8 +11,8 @@ export default function Footer(){
        
     return(
         <footer className="bg-[#02066F] p-10 text-white flex flex-col gap-8 " >
-            <div className="flex justify-between">
-                <div className="w-[33%] flex flex-col gap-3 ">
+            <div className="flex justify-between max-lg:grid max-lg:grid-cols-1 max-lg:gap-10 max-lg:items-center max-lg:justify-center   ">
+                <div className="w-[33%] flex flex-col gap-3 max-lg:w-[70%]  ">
                     <div className="">
                         <Image  width={274} height={57}  src="/home/logo1.png" alt="logo" />
                     </div>
@@ -58,7 +58,7 @@ export default function Footer(){
 
             </div>
             <hr />
-            <small className="font-normal text-[14px] font-family-figtree " >© 2025 New Covenant Church, Ifako. All rights reserved.</small>
+            <small className="font-normal text-[14px] font-family-figtree max-md:text-[12px] " >© 2025 New Covenant Church, Ifako. All rights reserved.</small>
         </footer>
     )
-}
+ }

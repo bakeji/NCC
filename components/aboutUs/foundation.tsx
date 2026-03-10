@@ -1,11 +1,11 @@
 export default function Foundation(){
     return(
-        <section className="p-10 flex flex-col gap-10 " >
+        <section className="p-10 flex flex-col gap-10 max-md:p-5 " >
             <div>
-                <h1 className="font-heading" >The Foundation of Our Beliefs</h1>
+                <h1 className="font-heading max-md:text-2xl!" >The Foundation of Our Beliefs</h1>
             </div>
 
-            <div className="flex gap-6 justify-between items-center" >
+            <div className="flex gap-6 justify-between items-center max-md:flex-col " >
 
                 <div className="flex flex-col  gap-5">
                     <h3 className="font-family-figtree font-semibold text-[24px] ">One Church</h3>
