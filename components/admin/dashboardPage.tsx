@@ -3,9 +3,13 @@
 import React from 'react';
 import { FileText, Calendar, Headphones, Video, Users, TrendingUp } from 'lucide-react';
 import StatsCard from '@/components/admin/statsCard';
+import { useAuth } from '@/lib/authContext';
 
 
 const DashboardPage = () => {
+ const {user} = useAuth()
+
+
   const stats = [
     {
       title: 'Total Blogs',
@@ -90,7 +94,7 @@ const DashboardPage = () => {
       {/* Welcome Section */}
       <div>
         <h1 className="text-3xl font-bold text-gray-900">
-          Welcome back, Admin
+          Welcome back, {user?.email?  user.email.split('@')[0]: 'admin'}
         </h1>
         <p className="mt-2 text-sm text-gray-600">
           Here's what's happening with your church content today.

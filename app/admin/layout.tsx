@@ -16,7 +16,7 @@ import {
   LogOut,
   ChevronDown,
 } from 'lucide-react';
-import { AuthProvider } from '@/lib/authContext';
+import { AuthProvider, useAuth } from '@/lib/authContext';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -44,6 +44,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
     return pathname?.startsWith(href);
   };
 
+    const {user} = useAuth()
   return (
     <AuthProvider>
     <div className="min-h-screen bg-gray-50">
@@ -156,9 +157,9 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
                   className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100"
                 >
                   <div className="h-8 w-8 rounded-full bg-purple-600 flex items-center justify-center text-white font-semibold">
-                    A
+                    {user?.email? user.email[0]: 'A'}
                   </div>
-                  <span className="hidden sm:block">Admin User</span>
+                  <span className="hidden sm:block">{user?.email}</span>
                   <ChevronDown className="h-4 w-4" />
                 </button>
 
