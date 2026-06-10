@@ -10,6 +10,7 @@ import Subscribe from "@/components/Home/subscribe";
 import WhoWeAre from "@/components/Home/whoWeAre";
 
 
+
 export default function Home() {
   return (
     <div>

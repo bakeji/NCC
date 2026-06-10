@@ -11,8 +11,8 @@ export default function Header(){
         {name:'Home', link:'/'},
         {name:'About Us', link:'/aboutUs'},
         {name:'Listen', link:'/listen'},
-        {name:'Connect', link:'/connect'},
-        {name:'Resources', link:'/resources'},
+        {name:'Programs', link:'/programs'},
+        {name:'blog', link:'/blog'},
     ]
 
     const pathName = usePathname()
