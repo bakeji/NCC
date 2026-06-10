@@ -94,6 +94,8 @@ export default function BlogForm({ initialData, onSuccess }: BlogFormProps) {
       imageUrl = await uploadImage(data.image);
     }
 
+
+
     if (initialData?.id) {
       // Edit mode — update existing doc
       await updateDoc(doc(db, 'blogs', initialData.id), {

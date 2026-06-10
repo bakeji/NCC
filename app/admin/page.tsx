@@ -1,11 +1,15 @@
-import DashboardLayout from "@/components/admin/dashboardlayout"
+import DashboardLayout from "@/app/admin/layout"
 import DashboardPage from "@/components/admin/dashboardPage";
+import ProtectedRoute from "@/components/protectedRoutes";
 
 
 export default function AdminPage() {
   return (
-    <DashboardLayout>
-      <DashboardPage />
-    </DashboardLayout>
+   <ProtectedRoute>
+    <DashboardPage />
+
+   </ProtectedRoute>
+      
+    
   );
 }

@@ -16,6 +16,7 @@ import {
   LogOut,
   ChevronDown,
 } from 'lucide-react';
+import { AuthProvider } from '@/lib/authContext';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -44,6 +45,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
   };
 
   return (
+    <AuthProvider>
     <div className="min-h-screen bg-gray-50">
       {/* Sidebar for desktop */}
       <aside className="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-64 lg:flex-col">
@@ -203,7 +205,11 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
         </main>
       </div>
     </div>
+
+    </AuthProvider>
   );
 };
+
+
 
 export default DashboardLayout;

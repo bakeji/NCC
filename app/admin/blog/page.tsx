@@ -1,10 +1,19 @@
-import DashboardLayout from "@/components/admin/dashboardlayout";
+import DashboardLayout from "@/app/admin/layout";
 import BlogsPage from "@/components/admin/blog/blogpage";
+import ProtectedRoute from "@/components/protectedRoutes";
 
 export default function BlogPage() {
   return (
-    <DashboardLayout>
-      <BlogsPage />
-    </DashboardLayout>
+
+    
+
+      <ProtectedRoute>
+        <BlogsPage />
+
+      </ProtectedRoute>
   )
+
+
+
+
 }
