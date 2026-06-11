@@ -7,6 +7,7 @@ import LatestMessage from "@/components/Home/latestMessage";
 import Media from "@/components/Home/media";
 import Service from "@/components/Home/service";
 import Subscribe from "@/components/Home/subscribe";
+import TrackVisit from "@/components/Home/trackVisits";
 import WhoWeAre from "@/components/Home/whoWeAre";
 
 
@@ -14,6 +15,7 @@ import WhoWeAre from "@/components/Home/whoWeAre";
 export default function Home() {
   return (
     <div>
+      <TrackVisit />
       <div className="bg-no-repeat bg-cover   min-h-screen " style={{backgroundImage: "url('/home/bg.png')" }} >
         <Header />
        <div className=" flex justify-center w-full h-screen items-center " >

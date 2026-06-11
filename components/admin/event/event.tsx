@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-
 import { Search, Filter, MapPin, Users } from 'lucide-react';
 import PageHeader from '../pageHeader';
 import Table from '../table';

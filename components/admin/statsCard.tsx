@@ -1,5 +1,7 @@
 import React from 'react';
 import { LucideIcon } from 'lucide-react';
+import { useBlogs } from '@/lib/hooks/useblogs';
+import { useEvents } from '@/lib/hooks/useEvents';
 
 interface StatsCardProps {
   title: string;
@@ -26,6 +28,7 @@ const StatsCard: React.FC<StatsCardProps> = ({
     orange: 'bg-orange-100 text-orange-600',
   };
 
+
   return (
     <div className="overflow-hidden rounded-lg bg-white shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
       <div className="p-6">
@@ -44,7 +47,7 @@ const StatsCard: React.FC<StatsCardProps> = ({
                 <div className="text-2xl font-semibold text-gray-900">
                   {value}
                 </div>
-                {trend && (
+                {/* {trend && (
                   <div
                     className={`ml-2 flex items-baseline text-sm font-semibold ${
                       trend.isPositive ? 'text-green-600' : 'text-red-600'
@@ -52,7 +55,7 @@ const StatsCard: React.FC<StatsCardProps> = ({
                   >
                     {trend.isPositive ? '↑' : '↓'} {Math.abs(trend.value)}%
                   </div>
-                )}
+                )} */}
               </dd>
             </dl>
           </div>

@@ -114,7 +114,7 @@ export default function EventForm({initialData, onSuccess}:EventFormProps){
                 // banner: initialData.banner,
                 link: data.link,
                 contact: data.contact,
-                updatedAt: serverTimestamp()
+                updated: serverTimestamp()
 
                 })
                 toast.success('Event updated successfully! ')
@@ -129,7 +129,7 @@ export default function EventForm({initialData, onSuccess}:EventFormProps){
                  banner: imageUrl,
                 link: data.link,
                 contact: data.contact,
-                createdAt: serverTimestamp()
+                created: serverTimestamp()
 
                 });
                 toast.success('Event published successfully')
@@ -261,8 +261,8 @@ export default function EventForm({initialData, onSuccess}:EventFormProps){
 
                     
                 <option value=""> select an event type </option>
-                 {eventTypes.map((type)=>(
-                <option value={type.value}>{type.label} </option>
+                 {eventTypes.map((type, id)=>(
+                <option key={id} value={type.value}>{type.label} </option>
                 
                 ))}
             </select>

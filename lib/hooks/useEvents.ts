@@ -29,11 +29,11 @@ export interface Event {
     banner?: string // Cloudinary URL
     link?:string
     contact?:string
-    createdAt?: Timestamp
-    updatedAt?: Timestamp
+    created?: Timestamp
+    updated?: Timestamp
 }
 
-type EventFormData = Omit< Event, 'id' | 'createdAt' | 'updatedAt' | 'image'> & { image?: File }
+type EventFormData = Omit< Event, 'id' | 'created' | 'updated' | 'image'> & { image?: File }
 
 // Hook for all Events operations
 export function useEvents() {
@@ -47,7 +47,7 @@ export function useEvents() {
     // Get all events
     useEffect(() => {
         const EventRef = collection(db, 'events')
-        const q = query(EventRef, orderBy('createdAt', 'desc'))
+        const q = query(EventRef, orderBy('created', 'desc'))
 
         const unsubscribe = onSnapshot(
             q,
@@ -158,7 +158,7 @@ export function useSingleEvent(eventId: string | null) {
             await updateDoc(eventRef, {
                 ...data,
                 ...(imageUrl && { image: imageUrl }),
-                updatedAt: Timestamp.now()
+                updated: Timestamp.now()
             })
             toast.success('event updated successfully!')
             return true
@@ -193,7 +193,7 @@ export function useEventsByStatus(status: 'draft' | 'published') {
         const q = query(
             eventsRef,
             where('status', '==', status),
-            orderBy('createdAt', 'desc')
+            orderBy('created', 'desc')
         )
 
         const unsubscribe = onSnapshot(

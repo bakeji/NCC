@@ -29,7 +29,7 @@ export default function BlogsPage() {
     { key: 'author', label: 'Author' },
     { key: 'category', label: 'Category' },
    
-    { key: 'created', label: 'created', render:(value:Timestamp) => value.toDate().toLocaleString()  },
+    { key: 'created', label: 'created', render:(value:Timestamp) => value?.toDate().toLocaleString()  },
     { key: 'updated', label: 'updated', render: (value:Timestamp) => value?  value.toDate().toLocaleString() : ''  },
   ];
   console.log(selectedBlog?.updated)
