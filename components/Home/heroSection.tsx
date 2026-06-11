@@ -2,46 +2,42 @@
 import { useState } from 'react'
 
 export default function HeroSection(){
-    const [showLiveStream, setShowLiveStream] = useState(false)
     const [showNotLiveModal, setShowNotLiveModal] = useState(false)
     const [showLocationMap, setShowLocationMap] = useState(false)
-    const [isChecking, setIsChecking] = useState(false)
     
-    // Replace with your YouTube channel ID or handle
-    const YOUTUBE_CHANNEL_ID = "UCg41wl17eU-iwVZyZeNaWng"
-    const YOUTUBE_HANDLE = "@ayodejinicholas5812"
+    const YOUTUBE_HANDLE = "@nccifakochurch"
     
-    // Your church location - UPDATE THESE VALUES
     const CHURCH_LOCATION = {
         name: "New Covenant Church, Ifako",
         address: "67, 69 Oyemekun St, Ifako Agege, Lagos 101232, Lagos",
         lat: 6.637279958259014, 
         lng: 3.3312183100214847
-        // phone: "(123) 456-7890", // Optional
-        // email: "info@nccifako.com" // Optional
     }
-    
-    const checkIfLive = async () => {
-        setIsChecking(true)
+
+    const isWithinServiceHours = () => {
+        const now = new Date()
+        const lagosTime = new Date(now.toLocaleString("en-US", { timeZone: "Africa/Lagos" }))
         
-        try {
-            const response = await fetch(`https://www.youtube.com/${YOUTUBE_HANDLE}/live`, {
-                method: 'HEAD',
-                mode: 'no-cors'
-            })
-            
-            setShowLiveStream(true)
-            
-        } catch (error) {
-            console.error('Error checking live status:', error)
-            setShowNotLiveModal(true)
-        } finally {
-            setIsChecking(false)
-        }
+        const day = lagosTime.getDay()
+        const hours = lagosTime.getHours()
+        const minutes = lagosTime.getMinutes()
+        const totalMinutes = hours * 60 + minutes
+
+        // Sunday 9:00 AM – 12:00 PM (540 – 720 mins)
+        if (day === 0 && totalMinutes >= 540 && totalMinutes < 720) return true
+
+        // Tuesday 6:00 PM – 9:00 PM (1080 – 1260 mins)
+        if (day === 2 && totalMinutes >= 1080 && totalMinutes < 1260) return true
+
+        return false
     }
     
     const handleWatchLive = () => {
-        checkIfLive()
+        if (isWithinServiceHours()) {
+            window.open(`https://www.youtube.com/${YOUTUBE_HANDLE}/live`, "_blank")
+        } else {
+            setShowNotLiveModal(true)
+        }
     }
     
     return(
@@ -56,10 +52,9 @@ export default function HeroSection(){
                 <div className="flex items-center justify-center mt-5 gap-5 max-md:flex-col w-full">
                     <button 
                         onClick={handleWatchLive}
-                        disabled={isChecking}
-                        className="py-2.5 px-4.5 rounded-[20px] hover:bg-white hover:text-[#02066F] text-white heading-primary bg-[#E90000] cursor-pointer max-md:w-full disabled:opacity-50"
+                        className="py-2.5 px-4.5 rounded-[20px] hover:bg-white hover:text-[#02066F] text-white heading-primary bg-[#E90000] cursor-pointer max-md:w-full"
                     >
-                        {isChecking ? 'Checking...' : 'Watch Live'}
+                        Watch Live
                     </button>
                     <button 
                         onClick={() => setShowLocationMap(true)}
@@ -69,36 +64,6 @@ export default function HeroSection(){
                     </button>
                 </div>
             </div>
-
-            {/* Live Stream Modal */}
-            {showLiveStream && (
-                <div 
-                    className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4"
-                    onClick={() => setShowLiveStream(false)}
-                >
-                    <div 
-                        className="relative w-full max-w-4xl aspect-video"
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        <button
-                            onClick={() => setShowLiveStream(false)}
-                            className="absolute -top-10 right-0 text-white text-2xl hover:text-red-500 font-bold"
-                        >
-                            ✕ Close
-                        </button>
-                        <iframe
-                            className="w-full h-full rounded-lg"
-                            src={`https://www.youtube.com/embed/${YOUTUBE_HANDLE}/live?autoplay=1`}
-                            title="Live Stream"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                        />
-                        <p className="text-white text-center mt-2 text-sm">
-                            we're not currently live. Check back during service times!
-                        </p>
-                    </div>
-                </div>
-            )}
 
             {/* Not Live Modal */}
             {showNotLiveModal && (
@@ -115,8 +80,8 @@ export default function HeroSection(){
                             We're Not Live Right Now
                         </h2>
                         <p className="text-gray-600 mb-6">
-                            Join us for our live services on Sundays at 9:00 AM and 11:00 AM, 
-                            and Wednesdays at 7:00 PM.
+                            Join us for our live services on Sundays at 9:00 AM, 
+                            and Tuesdays at 6:00 PM.
                         </p>
                         <button
                             onClick={() => setShowNotLiveModal(false)}
@@ -147,7 +112,7 @@ export default function HeroSection(){
                             </button>
                             
                             {/* Map */}
-                            <div className="w-full h-80">
+                            <div className="w-full h-60">
                                 <iframe
                                     className="w-full h-full"
                                     src={`https://maps.google.com/maps?q=${CHURCH_LOCATION.lat},${CHURCH_LOCATION.lng}&z=15&output=embed`}
@@ -168,23 +133,18 @@ export default function HeroSection(){
                                         <span className="text-xl">🏠</span>
                                         <p className="text-gray-700">{CHURCH_LOCATION.address}</p>
                                     </div>
-                                    
-                                    
-                                    
-                                  
                                 </div>
                                 
                                 {/* Service Times */}
-                                <div className="mt-6 bg-gray-50 rounded-lg p-4">
+                                <div className="mt-3 bg-gray-50 rounded-lg p-4">
                                     <h4 className="font-bold text-gray-800 mb-2">⏰ Service Times</h4>
-                                    <p className="text-gray-700 mb-1">📅 Sundays: 9:00 AM & 11:00 AM</p>
-                                    <p className="text-gray-700">📅 Wednesdays: 7:00 PM</p>
+                                    <p className="text-gray-700 mb-1">📅 Sundays: 9:00 AM</p>
+                                    <p className="text-gray-700">📅 Tuesdays: 6:00 PM</p>
                                 </div>
                                 
                                 {/* Action Buttons */}
                                 <div className="flex gap-3 mt-6 flex-wrap">
                                     <a
-                                    
                                         href={`https://www.google.com/maps/dir/?api=1&destination=${CHURCH_LOCATION.lat},${CHURCH_LOCATION.lng}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
@@ -192,23 +152,19 @@ export default function HeroSection(){
                                     >
                                         Get Directions
                                     </a>
-
                                     <a
-                                    
                                         href={`https://www.google.com/maps/search/?api=1&query=${CHURCH_LOCATION.lat},${CHURCH_LOCATION.lng}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="flex-1 min-w-50 py-3 px-6 bg-white text-[#02066F] border-2 border-[#02066F] rounded-[20px] text-center hover:bg-[#02066F] hover:text-white transition-all font-semibold"
-                                   >
+                                    >
                                         View on Google Maps
                                     </a>
                                 </div>
-                                </div>
-                                
                             </div>
                         </div>
                     </div>
-               
+                </div>
             )}
         </>
     )
